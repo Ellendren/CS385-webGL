@@ -5,8 +5,8 @@ function Cube( gl, numSides, vertexShaderId, fragmentShaderId ) {
     // Initialize the shader pipeline for this object using either shader ids
     //   declared in the application's HTML header, or use the default names.
     //
-    var vertShdr = vertexShaderId || "Cone-vertex-shader";
-    var fragShdr = fragmentShaderId || "Cone-fragment-shader";
+    var vertShdr = vertexShaderId || "Cube-vertex-shader";
+    var fragShdr = fragmentShaderId || "Cube-fragment-shader";
 
     this.program = initShaders(gl, vertShdr, fragShdr);
 

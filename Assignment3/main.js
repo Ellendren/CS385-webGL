@@ -5,7 +5,7 @@ function init(){
 
     gl.clearColor(0.0, 0.0, 0.0, 1.0);
 
-    cube = new Cube(gl, 100);
+    cube = new Cube(gl, 20);
 
     render();
 
