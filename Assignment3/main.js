@@ -5,7 +5,7 @@ function init(){
 
     gl.clearColor(0.0, 0.0, 0.0, 1.0);
 
-    cone = new Cone(gl, 100);
+    cube = new Cube(gl, 100);
 
     render();
 
@@ -15,7 +15,7 @@ function render(){
     
     gl.clear(gl.COLOR_BUFFER_BIT);
 
-    cone.render();
+    cube.render();
 
 }
 
