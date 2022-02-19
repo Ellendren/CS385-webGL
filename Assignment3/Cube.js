@@ -1,6 +1,6 @@
 
 
-function Cube( gl, numSides, vertexShaderId, fragmentShaderId ) {
+function Cube( gl, vertexShaderId, fragmentShaderId ) {
 
     // Initialize the shader pipeline for this object using either shader ids
     //   declared in the application's HTML header, or use the default names.
@@ -23,12 +23,17 @@ function Cube( gl, numSides, vertexShaderId, fragmentShaderId ) {
 
     //first triangle
     var positions = [
-        -0.5, -0.5, -0.5,
-        0.5, -0.5, -0.5,
-        0.5, 0.5, -0.5
+        -0.5, 0.5, -0.5,    //top left, froont
+        0.5, 0.5, -0.5,     //top right, front
+        -0.5, -0.5, -0.5,   //bottom left, front
+        0.5, -0.5, -0.5,    //bottom right, front
+        -0.5, 0.5, 0.5,     //top left, back
+        0.5, 0.5, 0.5,      //top right, back
+        -0.5, -0.5, 0.5,    //bottom left, back
+        0.5, -0.5, 0.5      //bottom right, back
     ];
 
-    var indices = [0, 1, 2];
+    var indices = [0, 1, 2, 3, 7, 1, 5, 0, 4, 2, 6, 7, 4, 5];
     
     this.indices = { count: indices.length}
     
@@ -55,6 +60,6 @@ function Cube( gl, numSides, vertexShaderId, fragmentShaderId ) {
 
         // Draw the cone's base
         //
-        gl.drawElements( gl.TRIANGLES, this.indices.count, gl.UNSIGNED_SHORT, 0 );
+        gl.drawElements( gl.TRIANGLE_STRIP, this.indices.count, gl.UNSIGNED_SHORT, 0 );
     }
 };
