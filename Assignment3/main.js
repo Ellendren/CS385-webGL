@@ -1,6 +1,9 @@
 
 
 function init(){
+
+    var angle = 0.0;
+    var axis = [1.0, 1.0, 0.0];
     
     var canvas = document.getElementById("webgl-canvas");
     gl = canvas.getContext("webgl2");
@@ -11,21 +14,27 @@ function init(){
     gl.enable(gl.DEPTH_TEST);
 
     gl.enable(gl.CULL_FACE);
-    gl.cullFace(gl.BACK_FACE);
+    gl.cullFace(gl.BACK);
 
     cube = new Cube(gl);
 
     requestAnimationFrame(render);
 
-}
-
-function render(){
+    function render(){
     
-    gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+        gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+    
+        angle += 1.0;
+    
+        var rotationMatrix = rotate(angle, axis);
 
-    cube.render();
-
-    requestAnimationFrame(render);
+        cube.rotationMatrix = rotationMatrix;
+    
+        cube.render();
+    
+        requestAnimationFrame(render);
+    
+    }
 
 }
 

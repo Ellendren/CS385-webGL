@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <head>
     <script type="text/javascript" src="initShaders.js"></script>
+    <script type="text/javascript" src="MV.js"></script>
     <script type="text/javascript" src="CubeOutline.js"/></script>
     <script type="text/javascript" src="Cube.js"></script>
     <script type="text/javascript" src="main.js"></script>
 
     <script id="Cube-vertex-shader" type="x-shader/x-vertex">#version 300 es
         in vec4 aPosition;
+        uniform mat4 rotationMatrix;
         
         void main()
         {
             gl_PointSize = 3.0;
-            gl_Position = aPosition;
+            gl_Position = rotationMatrix *aPosition;
         }
     </script>
 
@@ -32,11 +34,12 @@
 
     <script id="Outline-vertex-shader" type="x-shader/x-vertex">#version 300 es
         in vec4 aPosition;
+        uniform mat4 rotationMatrixOutline;
         
         void main()
         {
             gl_PointSize = 3.0;
-            gl_Position = aPosition;
+            gl_Position = rotationMatrixOutline * aPosition;
         }
     </script>
 
@@ -47,7 +50,6 @@
 
         void main()
         {
-
             fColor = vec4(0.1, 0.1, 0.1, 1.0);
         }
     </script>
