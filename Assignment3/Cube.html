@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <head>
     <script type="text/javascript" src="initShaders.js"></script>
+    <script type="text/javascript" src="CubeOutline.js"/></script>
     <script type="text/javascript" src="Cube.js"></script>
     <script type="text/javascript" src="main.js"></script>
 
@@ -21,10 +22,36 @@
 
         void main()
         {
-            fColor = vec4(1.0, 1.0, 1.0, 1.0);
+
+            vec4 frontColor = vec4(1.0, 0.5, 0.5, 1.0);
+            vec4 backColor = vec4(1.0, 1.0, 1.0, 1.0);
+
+            fColor = gl_FrontFacing ? frontColor : backColor;
         }
     </script>
-</head>
+
+    <script id="Outline-vertex-shader" type="x-shader/x-vertex">#version 300 es
+        in vec4 aPosition;
+        
+        void main()
+        {
+            gl_PointSize = 3.0;
+            gl_Position = aPosition;
+        }
+    </script>
+
+    <script id="Outline-fragment-shader" type="x-shader/x-fragment">#version 300 es
+        precision highp float;
+
+        out vec4 fColor;
+
+        void main()
+        {
+
+            fColor = vec4(0.1, 0.1, 0.1, 1.0);
+        }
+    </script>
+    </head>
 <body>
     <canvas id="webgl-canvas" width="512" height="512"></canvas>
 </body>

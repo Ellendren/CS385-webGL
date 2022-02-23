@@ -11,7 +11,7 @@ function Cube( gl, vertexShaderId, fragmentShaderId ) {
     this.program = initShaders(gl, vertShdr, fragShdr);
 
     if ( this.program < 0 ) {
-        alert( "Error: Cone shader pipeline failed to compile.\n\n" +
+        alert( "Error: Cube shader pipeline failed to compile.\n\n" +
             "\tvertex shader id:  \t" + vertShdr + "\n" +
             "\tfragment shader id:\t" + fragShdr + "\n" );
         return; 
@@ -20,8 +20,6 @@ function Cube( gl, vertexShaderId, fragmentShaderId ) {
     this.positions = {numComponents: 3};
 
     //hardcode cube verticies
-
-    //first triangle
     var positions = [
         -0.5, 0.5, -0.5,    //top left, froont
         0.5, 0.5, -0.5,     //top right, front
@@ -49,6 +47,9 @@ function Cube( gl, vertexShaderId, fragmentShaderId ) {
     this.positions.attributeLoc = gl.getAttribLocation( this.program, "aPosition" );
     gl.enableVertexAttribArray( this.positions.attributeLoc );
 
+    //get the cubeOutline object
+    this.outline = new CubeOutline(gl, positions);
+
     this.render = function () {
         gl.useProgram( this.program );
 
@@ -58,8 +59,10 @@ function Cube( gl, vertexShaderId, fragmentShaderId ) {
  
         gl.bindBuffer( gl.ELEMENT_ARRAY_BUFFER, this.indices.buffer );
 
-        // Draw the cone's base
+        // Draw the cube
         //
         gl.drawElements( gl.TRIANGLE_STRIP, this.indices.count, gl.UNSIGNED_SHORT, 0 );
+
+        this.outline.render();
     }
 };
