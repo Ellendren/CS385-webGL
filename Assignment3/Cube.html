@@ -21,7 +21,7 @@
         precision highp float;
 
         out vec4 fColor;
-
+        
         void main()
         {
 
@@ -30,6 +30,7 @@
 
             fColor = gl_FrontFacing ? frontColor : backColor;
         }
+
     </script>
 
     <script id="Outline-vertex-shader" type="x-shader/x-vertex">#version 300 es

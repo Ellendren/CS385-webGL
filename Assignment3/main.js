@@ -3,7 +3,7 @@
 function init(){
 
     var angle = 0.0;
-    var axis = [1.0, 1.0, 0.0];
+    var axis = [1.0, 1.0, 0.1];
     
     var canvas = document.getElementById("webgl-canvas");
     gl = canvas.getContext("webgl2");
@@ -18,6 +18,7 @@ function init(){
 
     cube = new Cube(gl);
 
+    //render();
     requestAnimationFrame(render);
 
     function render(){
@@ -26,7 +27,7 @@ function init(){
     
         angle += 1.0;
     
-        var rotationMatrix = rotate(angle, axis);
+        rotationMatrix = rotate(angle, axis);
 
         cube.rotationMatrix = rotationMatrix;
     

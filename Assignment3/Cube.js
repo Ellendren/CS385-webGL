@@ -21,16 +21,18 @@ function Cube( gl, vertexShaderId, fragmentShaderId ) {
 
     //hardcode cube verticies
     var positions = [
-        -0.5, 0.5, -0.5,    //top left, froont
-        0.5, 0.5, -0.5,     //top right, front
-        -0.5, -0.5, -0.5,   //bottom left, front
-        0.5, -0.5, -0.5,    //bottom right, front
-        -0.5, 0.5, 0.5,     //top left, back
-        0.5, 0.5, 0.5,      //top right, back
-        -0.5, -0.5, 0.5,    //bottom left, back
-        0.5, -0.5, 0.5      //bottom right, back
+        -0.5, 0.5, 0.5,    //top left, back
+        0.5, 0.5, 0.5,     //top right, back
+        -0.5, -0.5, 0.5,   //bottom left, back
+        0.5, -0.5, 0.5,    //bottom right, back
+        -0.5, 0.5, -0.5,     //top left, front
+        0.5, 0.5, -0.5,      //top right, front
+        -0.5, -0.5, -0.5,    //bottom left, front
+        0.5, -0.5, -0.5      //bottom right, front
     ];
 
+    //note sense we use a triangle fan to render the cube, only y=the
+    //order of the first three vertexs matter for the facing
     var indices = [0, 1, 2, 3, 7, 1, 5, 0, 4, 2, 6, 7, 4, 5];
     
     this.indices = { count: indices.length}
