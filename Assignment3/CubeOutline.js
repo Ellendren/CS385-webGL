@@ -46,9 +46,9 @@ function CubeOutline(gl, cubePositins, vertexShaderId, fragmentShaderId){
     gl.enableVertexAttribArray( this.positions.attributeLoc );
 
     this.uniforms = {
-        rotationMatrix: gl.getUniformLocation(this.program, "rotationMatrixOutline")
+        MV: gl.getUniformLocation(this.program, "MVOutline")
     }
-    this.rotationMatrix = mat4();
+    this.MV = mat4();
 
     this.render = function(){
 
@@ -60,7 +60,7 @@ function CubeOutline(gl, cubePositins, vertexShaderId, fragmentShaderId){
 
         gl.bindBuffer( gl.ELEMENT_ARRAY_BUFFER, this.indices.buffer );
 
-        gl.uniformMatrix4fv(this.uniforms.rotationMatrix, false, flatten(this.rotationMatrix));
+        gl.uniformMatrix4fv(this.uniforms.MV, false, flatten(this.MV));
 
         // Draw the cubes outline
         //

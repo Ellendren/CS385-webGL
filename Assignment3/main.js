@@ -27,9 +27,9 @@ function init(){
     
         angle += 1.0;
     
-        rotationMatrix = rotate(angle, axis);
+        MV = rotate(angle, axis);
 
-        cube.rotationMatrix = rotationMatrix;
+        cube.MV = MV;
     
         cube.render();
     

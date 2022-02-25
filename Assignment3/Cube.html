@@ -8,12 +8,12 @@
 
     <script id="Cube-vertex-shader" type="x-shader/x-vertex">#version 300 es
         in vec4 aPosition;
-        uniform mat4 rotationMatrix;
+        uniform mat4 MV;
         
         void main()
         {
             gl_PointSize = 3.0;
-            gl_Position = rotationMatrix *aPosition;
+            gl_Position = MV *aPosition;
         }
     </script>
 
@@ -35,12 +35,12 @@
 
     <script id="Outline-vertex-shader" type="x-shader/x-vertex">#version 300 es
         in vec4 aPosition;
-        uniform mat4 rotationMatrixOutline;
+        uniform mat4 MVOutline;
         
         void main()
         {
             gl_PointSize = 3.0;
-            gl_Position = rotationMatrixOutline * aPosition;
+            gl_Position = MVOutline * aPosition;
         }
     </script>
 
