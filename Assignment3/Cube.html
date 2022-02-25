@@ -8,24 +8,31 @@
 
     <script id="Cube-vertex-shader" type="x-shader/x-vertex">#version 300 es
         in vec4 aPosition;
+        
+        out vec4 vColor;
+
         uniform mat4 MV;
         
         void main()
         {
+            vColor = aPosition;
+
             gl_PointSize = 3.0;
-            gl_Position = MV *aPosition;
+            gl_Position = MV * (aPosition - vec4(0.5, 0.5, 0.5, 0.0));
         }
     </script>
 
     <script id="Cube-fragment-shader" type="x-shader/x-fragment">#version 300 es
         precision highp float;
 
+        in vec4 git commitvColor;
+
         out vec4 fColor;
         
         void main()
         {
 
-            vec4 frontColor = vec4(1.0, 0.5, 0.5, 1.0);
+            vec4 frontColor = vColor;
             vec4 backColor = vec4(1.0, 1.0, 1.0, 1.0);
 
             fColor = gl_FrontFacing ? frontColor : backColor;
@@ -40,7 +47,7 @@
         void main()
         {
             gl_PointSize = 3.0;
-            gl_Position = MVOutline * aPosition;
+            gl_Position = MVOutline * (aPosition - vec4(0.5, 0.5, 0.5, 0.0));
         }
     </script>
 

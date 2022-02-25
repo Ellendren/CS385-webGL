@@ -21,14 +21,14 @@ function Cube( gl, vertexShaderId, fragmentShaderId ) {
 
     //hardcode cube verticies
     var positions = [
-        -0.5, 0.5, 0.5,    //top left, back
-        0.5, 0.5, 0.5,     //top right, back
-        -0.5, -0.5, 0.5,   //bottom left, back
-        0.5, -0.5, 0.5,    //bottom right, back
-        -0.5, 0.5, -0.5,     //top left, front
-        0.5, 0.5, -0.5,      //top right, front
-        -0.5, -0.5, -0.5,    //bottom left, front
-        0.5, -0.5, -0.5      //bottom right, front
+        0.0, 1.0, 1.0,    //top left, back
+        1.0, 1.0, 1.0,     //top right, back
+        0.0, 0.0, 1.0,   //bottom left, back
+        1.0, 0.0, 1.0,    //bottom right, back
+        0.0, 1.0, 0.0,     //top left, front
+        1.0, 1.0, 0.0,      //top right, front
+        0.0, 0.0, 0.0,    //bottom left, front
+        1.0, 0.0, 0.0      //bottom right, front
     ];
 
     //note sense we use a triangle fan to render the cube, only y=the

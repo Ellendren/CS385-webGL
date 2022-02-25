@@ -2,14 +2,14 @@ function CubeOutline(gl, cubePositins, vertexShaderId, fragmentShaderId){
 
     positions = cubePositins || 
     [
-        -0.5, 0.5, -0.5,    //top left, froont
-        0.5, 0.5, -0.5,     //top right, front
-        -0.5, -0.5, -0.5,   //bottom left, front
-        0.5, -0.5, -0.5,    //bottom right, front
-        -0.5, 0.5, 0.5,     //top left, back
-        0.5, 0.5, 0.5,      //top right, back
-        -0.5, -0.5, 0.5,    //bottom left, back
-        0.5, -0.5, 0.5      //bottom right, back
+        0.0, 1.0, 0.0,    //top left, froont
+        1.0, 1.0, 0.0,     //top right, front
+        0.0, 0.0, 0.0,   //bottom left, front
+        1.0, 0.0, 0.0,    //bottom right, front
+        0.0, 1.0, 1.0,     //top left, back
+        1.0, 1.0, 1.0,      //top right, back
+        0.0, 0.0, 1.0,    //bottom left, back
+        1.0, 0.0, 1.0      //bottom right, back
     ];
 
     var vertShdr = vertexShaderId || "Outline-vertex-shader";
