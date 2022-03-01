@@ -50,14 +50,16 @@ function Cube( gl, vertexShaderId, fragmentShaderId ) {
     gl.enableVertexAttribArray( this.positions.attributeLoc );
 
     this.uniforms = {
-        MV: gl.getUniformLocation(this.program, "MV")
+        MV: gl.getUniformLocation(this.program, "MV"),
+        P: gl.getUniformLocation(this.program, "P")
     }
     this.MV = mat4();
+    this.P = mat4();
 
-    //get the Cube object
+    //get the CubeOutline object
     this.outline = new CubeOutline(gl, positions);
 
-    this.render = function () {
+    this.render = () => {
         gl.useProgram( this.program );
 
         gl.bindBuffer( gl.ARRAY_BUFFER, this.positions.buffer );
@@ -67,9 +69,12 @@ function Cube( gl, vertexShaderId, fragmentShaderId ) {
         gl.bindBuffer( gl.ELEMENT_ARRAY_BUFFER, this.indices.buffer );
 
         gl.uniformMatrix4fv(this.uniforms.MV, false, flatten(this.MV));
+        gl.uniformMatrix4fv(this.uniforms.P, false, flatten(this.P));
 
         this.outline.MV = this.MV;
+        this.outline.P = this.P;
 
+    
         // Draw the cube
         //
         gl.drawElements( gl.TRIANGLE_STRIP, this.indices.count, gl.UNSIGNED_SHORT, 0 );

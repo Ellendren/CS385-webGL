@@ -46,11 +46,13 @@ function CubeOutline(gl, cubePositins, vertexShaderId, fragmentShaderId){
     gl.enableVertexAttribArray( this.positions.attributeLoc );
 
     this.uniforms = {
-        MV: gl.getUniformLocation(this.program, "MVOutline")
+        MV: gl.getUniformLocation(this.program, "MV"),
+        P: gl.getUniformLocation(this.program, "P")
     }
     this.MV = mat4();
+    this.P = mat4();
 
-    this.render = function(){
+    this.render = () => {
 
         gl.useProgram(this.program);
 
@@ -61,6 +63,7 @@ function CubeOutline(gl, cubePositins, vertexShaderId, fragmentShaderId){
         gl.bindBuffer( gl.ELEMENT_ARRAY_BUFFER, this.indices.buffer );
 
         gl.uniformMatrix4fv(this.uniforms.MV, false, flatten(this.MV));
+        gl.uniformMatrix4fv(this.uniforms.P, false, flatten(this.P));
 
         // Draw the cubes outline
         //
