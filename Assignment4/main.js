@@ -16,7 +16,7 @@ function init() {
     const sun_radius = 2.5,
           earth_radius = 1.5,
           moon_radius = 1,
-          earth_orbit = 10,
+          earth_orbit = 15,
           moon_orbit = 4,
           diameter = 2 * (earth_orbit + moon_orbit + moon_radius);
 
@@ -33,7 +33,6 @@ function init() {
     let Sun = new Sphere(50);
     Sun.radius= sun_radius;
     Sun.color = [1.0, 1.0, 0.0, 1.0];
-    //Sun.PointMode = true;
     Sun.P = P;
 
     let Earth = new Sphere();
@@ -48,6 +47,10 @@ function init() {
     Moon.orbit = moon_orbit;
     Moon.color = [0.9, 0.9, 0.9, 1.0];
     Moon.P = P;
+
+    //rotaion info
+    let angle = 0.0;
+    let axis = [0,0,1];
 
     function render() {
 
@@ -71,6 +74,7 @@ function init() {
 
         //earth
         ms.push();
+        ms.rotate(angle, axis);
         ms.translate(Earth.orbit, 0, 0);
         ms.push();//save the earth position for the moon to use later
         ms.scale(Earth.radius);
@@ -79,6 +83,7 @@ function init() {
         ms.pop();
 
         //moon in realtion to earth
+        ms.rotate(angle, axis);
         ms.translate(Moon.orbit, 0, 0);
         ms.scale(Moon.radius);
         Moon.MV = ms.current();
@@ -87,8 +92,8 @@ function init() {
 
 
         
-    
-        //requestAnimationFrame(render);
+        angle += 1;
+        requestAnimationFrame(render);
     }
 
     requestAnimationFrame(render);
