@@ -13,26 +13,26 @@ function init() {
     // Add your sphere creation and configuration code here
     
     //binding value varibles
-    const sun_radius = 2.5,
-          earth_radius = 1.5,
-          moon_radius = 1,
-          earth_orbit = 15,
-          moon_orbit = 4,
+    const sun_radius = 0.25,
+          earth_radius = 0.15,
+          moon_radius = 0.1,
+          earth_orbit = 1.5,
+          moon_orbit = 0.4,
           diameter = 2 * (earth_orbit + moon_orbit + moon_radius);
 
     //perspective projection varibles
-    const near = 1,
+    const near = 3,
           far = near + diameter,
-          fovy = 2 * (Math.asin((diameter/2)/(near+(diameter/2))) * 180/Math.PI),
+          fovy = 2* (Math.asin((diameter/2)/(near+(diameter/2))) * 180/Math.PI),
           aspect = canvas.clientWidth/canvas.clientHeight;
 
-    console.log(fovy)
+    console.log(2 * Math.asin((diameter/2)/(near+(diameter/2))))
     
     const P = perspective(fovy, aspect, near, far);
 
     let Sun = new Sphere(50);
     Sun.radius= sun_radius;
-    Sun.color = [1.0, 1.0, 0.0, 1.0];
+    Sun.color = [1.0, 1.0, 0.1, 1.0];
     Sun.P = P;
 
     let Earth = new Sphere();
