@@ -2,7 +2,7 @@ function Solar() {
 
     this.sun = {
         ... new Sphere(50),
-        radius : 0.25,
+        radius : 0.4,
         color : [1.0, 1.0, 0.1, 1.0]
     };
 
