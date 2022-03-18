@@ -11,42 +11,19 @@ function init() {
     gl.enable(gl.DEPTH_TEST);
    
     // Add your sphere creation and configuration code here
-    
-    //binding value varibles
-    const sun_radius = 0.25,
-          earth_radius = 0.15,
-          moon_radius = 0.1,
-          earth_orbit = 1.5,
-          moon_orbit = 0.4,
-          diameter = 2 * (earth_orbit + moon_orbit + moon_radius);
+
+    let solar = new Solar();
 
     //perspective projection varibles
     const near = 3,
-          far = near + diameter,
-          fovy = 2* (Math.asin((diameter/2)/(near+(diameter/2))) * 180/Math.PI),
+          far = near + solar.diameter,
+          fovy = 2* (Math.asin((solar.diameter/2)/(near+(solar.diameter/2))) * 180/Math.PI),
           aspect = canvas.clientWidth/canvas.clientHeight;
-
-    console.log(2 * Math.asin((diameter/2)/(near+(diameter/2))))
     
     const P = perspective(fovy, aspect, near, far);
 
-    let Sun = new Sphere(50);
-    Sun.radius= sun_radius;
-    Sun.color = [1.0, 1.0, 0.1, 1.0];
-    Sun.P = P;
 
-    let Earth = new Sphere();
-    Earth.radius = earth_radius;
-    Earth.orbit = earth_orbit;
-    Earth.color = [0.0, 0.0, 1.0, 1.0];
-    Earth.P = P;
-
-
-    let Moon = new Sphere();
-    Moon.radius = moon_radius;
-    Moon.orbit = moon_orbit;
-    Moon.color = [0.9, 0.9, 0.9, 1.0];
-    Moon.P = P;
+    solar.setP(P);
 
     //rotaion info
     let angle = 0.0;
@@ -67,27 +44,27 @@ function init() {
 
         //sun
         ms.push();
-        ms.scale(Sun.radius);
-        Sun.MV = ms.current();
-        Sun.render();
+        ms.scale(solar.sun.radius);
+        solar.sun.MV = ms.current();
+        solar.sun.render();
         ms.pop();
 
         //earth
         ms.push();
         ms.rotate(angle, axis);
-        ms.translate(Earth.orbit, 0, 0);
+        ms.translate(solar.earth.orbit, 0, 0);
         ms.push();//save the earth position for the moon to use later
-        ms.scale(Earth.radius);
-        Earth.MV = ms.current();
-        Earth.render();
+        ms.scale(solar.earth.radius);
+        solar.earth.MV = ms.current();
+        solar.earth.render();
         ms.pop();
 
         //moon in realtion to earth
         ms.rotate(angle, axis);
-        ms.translate(Moon.orbit, 0, 0);
-        ms.scale(Moon.radius);
-        Moon.MV = ms.current();
-        Moon.render();
+        ms.translate(solar.moon.orbit, 0, 0);
+        ms.scale(solar.moon.radius);
+        solar.moon.MV = ms.current();
+        solar.moon.render();
         ms.pop();
 
 
