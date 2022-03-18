@@ -69,7 +69,7 @@ function init() {
 
         //saturn
         ms.push();
-        ms.rotate(angle, axis);
+        ms.rotate(angle/2, axis);
         ms.translate(solar.saturn.orbit, 0, 0);
         ms.push()//save this info for saturns disk
         ms.scale(solar.saturn.radius);
