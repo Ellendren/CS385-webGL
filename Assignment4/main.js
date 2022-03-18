@@ -15,7 +15,7 @@ function init() {
     let solar = new Solar();
 
     //perspective projection varibles
-    const near = 3,
+    const near = 20,
           far = near + solar.diameter,
           fovy = 2* (Math.asin((solar.diameter/2)/(near+(solar.diameter/2))) * 180/Math.PI),
           aspect = canvas.clientWidth/canvas.clientHeight;
@@ -67,6 +67,21 @@ function init() {
         solar.moon.render();
         ms.pop();
 
+        //saturn
+        ms.push();
+        ms.rotate(angle, axis);
+        ms.translate(solar.saturn.orbit, 0, 0);
+        ms.push()//save this info for saturns disk
+        ms.scale(solar.saturn.radius);
+        solar.saturn.MV = ms.current();
+        solar.saturn.render();
+        ms.pop();
+
+        //saturns disk
+        ms.scale(solar.saturn.disk.radius);
+        solar.saturn.disk.MV = ms.current();
+        solar.saturn.disk.render();
+        ms.pop();
 
         
         angle += 1;
