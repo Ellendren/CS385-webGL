@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import Stars from './envirment/stars';
 
 function main() {
   const canvas = document.querySelector('#c');
@@ -13,7 +14,15 @@ function main() {
 
   const scene = new THREE.Scene();
 
-  renderer.render(scene, camera);
+  const stars = new Stars(500, far);
+
+  scene.add(stars.points);
+
+  const render = () => {
+      renderer.render(scene, camera);
+  };
+
+  requestAnimationFrame(render);
 }
 
 main();
