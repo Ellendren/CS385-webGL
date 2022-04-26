@@ -55,7 +55,7 @@ function init(){
     
         cube.render();
     
-        requestAnimationFrame(render);
+       requestAnimationFrame(render);
     
     }
 

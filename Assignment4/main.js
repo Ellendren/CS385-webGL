@@ -15,7 +15,7 @@ function init() {
     let solar = new Solar();
 
     //perspective projection varibles
-    const near = 20,
+    const near = 100,
           far = near + solar.diameter,
           fovy = 2* (Math.asin((solar.diameter/2)/(near+(solar.diameter/2))) * 180/Math.PI),
           aspect = canvas.clientWidth/canvas.clientHeight;
@@ -55,6 +55,7 @@ function init() {
         ms.translate(solar.earth.orbit, 0, 0);
         ms.push();//save the earth position for the moon to use later
         ms.scale(solar.earth.radius);
+        ms.rotate(angle, axis);
         solar.earth.MV = ms.current();
         solar.earth.render();
         ms.pop();

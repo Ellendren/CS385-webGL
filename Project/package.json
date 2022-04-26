@@ -1,0 +1,17 @@
+{
+  "name": "final-project-ds9",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/example.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Luke T. Shoulders",
+  "license": "ISC",
+  "dependencies": {
+    "three": "^0.139.2"
+  },
+  "devDependencies": {
+    "parcel": "^2.5.0"
+  }
+}
