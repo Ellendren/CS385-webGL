@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { ArcballControls } from 'three/examples/jsm/controls/ArcballControls.js';
 import Stars from './envirment/stars';
 
 function main() {
@@ -14,13 +15,21 @@ function main() {
 
   const scene = new THREE.Scene();
 
-  const stars = new Stars(500, far);
+  const controls = new ArcballControls(camera, renderer.domElement, scene);
+  controls.setGizmosVisible(false);
+
+  const stars = new Stars(2000, far);
 
   scene.add(stars.points);
 
   const render = () => {
-      renderer.render(scene, camera);
+
+    renderer.render(scene, camera);
   };
+
+  controls.addEventListener( 'change', () => {
+    requestAnimationFrame(render);
+  })
 
   requestAnimationFrame(render);
 }

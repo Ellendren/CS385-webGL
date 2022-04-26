@@ -13,7 +13,7 @@ Reurns: its self
 export default function Stars(num = 500, far){
 
     this.material = new PointsMaterial({
-        size: 0.05
+        size: 0.01
     });
 
     let positions = new Float32Array(num*3);
@@ -35,8 +35,6 @@ export default function Stars(num = 500, far){
         this.geometry, 
         this.material
     );
-
-    console.log(this);
 
     return this;
 
