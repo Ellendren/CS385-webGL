@@ -19,7 +19,9 @@ export default function Stars(num = 500, far){
     let positions = new Float32Array(num*3);
 
     for (i = 0; i < num*3; i++){
-        positions[i] = ((Math.random() -0.5) * far*2);
+        let num = (Math.random() - 0.5) * far * 2;
+
+        positions[i] = num;
     }
 
     this.geometry = new BufferGeometry();
